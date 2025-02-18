@@ -14,29 +14,14 @@ let game = {
 };
 
 function showText(s){
-  // let textElement = document.getElementById('text');
-  // $textElement.innerHTML = s;
   let $textElement = $(`#text`)
-  // 기존 깜빡이는 예시
-  // $textElement.fadeOut();
-  // $textElement.html(s);
-  // $textElement.fadeIn();
-  // 콜백함수를 통한 개선
   $textElement.fadeOut(300,function(){
     $textElement.html(s);
     $textElement.fadeIn(100);
   });
 }
 function updateComScore(score)
-{// let comScoreElement = document.getElementById('computer-score');
-// $comScoreElement.innerHTML = computer.score;
-
-// 플러그인 적용 전
-// let $comScoreElement = $(`#computer-score`)
-// computer.score += score;
-// $comScoreElement.html(computer.score)
-
-// 플러그인 적용 후
+{
   computer.score += score;
   let $comScoreElement = $(`#computer-score`)
   $comScoreElement.animateNumber({
@@ -45,15 +30,6 @@ function updateComScore(score)
 }
 
 function updateUserScore(score){
-  // let userScoreElement = document.getElementById('user-score');
-  // $userScoreElement.innerHTML = user.score;
-  
-  //제이쿼리 적용 후(플러그 인 전)
-  // let $userScoreElement = $(`#user-score`)
-  // user.score += score;
-  // $userScoreElement.html(user.score);
-
-  // 플러그인 적용 후
   user.score += score;
   let $userScoreElement = $(`#user-score`)
   $userScoreElement.animateNumber({
@@ -62,21 +38,12 @@ function updateUserScore(score){
 }
 
 function disableComButton(flag){
-  // let computerButtons = document.getElementsByClassName('btn-computer'); 
-  // for(let i = 0; i < computerButtons.length; i++){
-  //   computerButtons[i].disabled = flag;
-  // }
   $('.btn-computer').prop('disabled',flag)
 }
 
 function disablUserButton(flag){
-  // let userButtons = document.getElementsByClassName('btn-user');
-  // for(let i = 0; i < userButtons.length; i++){
-  //   userButtons[i].disabled = flag;
-  // }
   $('.btn-user').prop('disabled',flag)
 }
-// 시나리오 관련 함수 작성 예정
 function updateAi(){
   let difference = user.score - computer.score;
   
@@ -104,7 +71,7 @@ function onComputerShoot(){
 
   let shootType = Math.random() < 0.5 ? 2 : 3;
 
-  if(Math.random() < computer['percent' + shootType]) { // 결과값은 percent2/percent3 가 되므로 computer['percent2'] 혹은 computer['percent3']가 산출 됨
+  if(Math.random() < computer['percent' + shootType]) {
     showText('컴퓨터의 ' +shootType+'점 슛이 성공했습니다');
     updateComScore(shootType);
   }else{
@@ -136,18 +103,10 @@ function onUserShoot(shootType){
       showText('3점슛을 실패했습니다. now-computer');
     }
   }  
-  
-
   game.isComputerTurn = true;
-
   disableComButton(false);
   disablUserButton(true);
-
-
   game.shootLeft --;
-  
-  // let shootLeftElement = document.getElementById('shots-left');
-  // $shootLeftElement.innerHTML = game.shootLeft;
   let $shootLeftElement = $(`#shots-left`)
   $shootLeftElement.html(game.shootLeft)
 
