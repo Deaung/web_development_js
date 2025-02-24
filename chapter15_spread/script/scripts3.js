@@ -14,10 +14,6 @@ const topStudent = students.filter(function(topStudent){
 })
 console.log(`성적우수 학생:`,topStudents);
 
-console.log(`성적우수 학생: ${topStudents.map(topStudent => '${topStudent.name} (${topStudent.grade})').join(`, `)}`)
-
-
-
 
 
 //2. 성적이 60점 미만인 학생만 추출
